@@ -8,6 +8,7 @@ support any depth by means of the MEM_SIZE constant.
 
 Change R.Willenberg - Oct 2012: Also produces a *.mem file for ModelSim simulation purposes
 Change F.Martin del Campo - Nov 2015: Added cstring library and changed b and e variables to size_t. This version works with the cywin included with altera 15.0
+Change P.Poolad updated with new instruction codes for nop/stop and vector instrucitons, debuged db instruction
 */
 
 #include <iostream>
