@@ -400,6 +400,15 @@ int main(int argc, char* argv[])
 				encoding = op1 << 6;
 				encoding += op2 << 4;
 			}
+			else if (col2 == "vload")
+			{
+				if (!extractOperands(col3, op1, op2, true))
+					throw "parse error";
+				encoding = 0;
+				encoding = op1 << 6;
+				encoding += op2 << 4;
+				encoding |= 0xA;
+			}
 			else if (col2 == "store")
 			{
 				if (!extractOperands(col3, op1, op2, true))
@@ -410,6 +419,15 @@ int main(int argc, char* argv[])
 				encoding += op2 << 4;
 				encoding |= 2;
 			}
+			else if (col2 == "vstore")
+			{
+				if (!extractOperands(col3, op1, op2, true))
+					throw "parse error";
+				encoding = 0;
+				encoding = op1 << 6;
+				encoding += op2 << 4;
+				encoding |= 0xC;
+			}
 			else if (col2 == "add")
 			{
 				if (!extractOperands(col3, op1, op2))
@@ -419,6 +437,15 @@ int main(int argc, char* argv[])
 				encoding = op1 << 6;
 				encoding += op2 << 4;
 				encoding |= 4;
+			}
+			else if (col2 == "vadd")
+			{
+				if (!extractOperands(col3, op1, op2, true))
+					throw "parse error";
+				encoding = 0;
+				encoding = op1 << 6;
+				encoding += op2 << 4;
+				encoding |= 0xE;
 			}
 			else if (col2 == "sub")
 			{
@@ -519,13 +546,14 @@ int main(int argc, char* argv[])
 					encoding |= 13;
 			}
 			else if (col2 == "stop")
-			  {
+			{
 			    encoding = 0x01;
-			  }
+			}
 			else if (col2 == "nop")
 			  {
 			    encoding = 0x81;
 			  }
+
 			
 			mem[cur_address] = (char) encoding;
 		}
