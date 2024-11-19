@@ -23,7 +23,7 @@ Change P.Poolad updated with new instruction codes for nop/stop and vector instr
 using namespace std;
 
 #define MEM_SIZE 256
-#define NUM_KEYWORDS 16
+#define NUM_KEYWORDS 19
 
 typedef struct instruction
 {
@@ -37,7 +37,7 @@ bool isKeyword(string str)
 {
 	string keywords[NUM_KEYWORDS] = {"load", "store", "add", "sub", "nand", "ori",
 						  "shift", "shiftl", "shiftr", "bz", "bnz", "bpz",
-					 "org", "db", "stop", "nop"};
+					 "org", "db", "stop", "nop", "vload", "vstore", "vadd"};
 
 	for (int i = 0; i < NUM_KEYWORDS; i++)
 	{
@@ -112,7 +112,7 @@ bool extractOperands (string ops, int& op1, int& op2, bool load_store = false)
 	{
 		string sop1 = ops.substr(0,comma_pos);
 		string sop2 = ops.substr(comma_pos+1);
-		if (sop1 != "k0" && sop1 != "k1" && sop1 != "k2" && sop1 != "k3")
+		if (sop1 != "k0" && sop1 != "k1" && sop1 != "k2" && sop1 != "k3" && sop1 != "v0" && sop1 != "v1" && sop1 != "v2" && sop1 != "v3")
 			return false;
 		if (load_store)
 		{
@@ -123,7 +123,7 @@ bool extractOperands (string ops, int& op1, int& op2, bool load_store = false)
 		}
 		else
 		{
-			if (sop2 != "k0" && sop2 != "k1" && sop2 != "k2" && sop2 != "k3")
+			if (sop2 != "k0" && sop2 != "k1" && sop2 != "k2" && sop2 != "k3" && sop2 != "v0" && sop2 != "v1" && sop2 != "v2" && sop2 != "v3")
 				return false;
 			else
 				op2 = sop2[1] - '0';
@@ -440,7 +440,7 @@ int main(int argc, char* argv[])
 			}
 			else if (col2 == "vadd")
 			{
-				if (!extractOperands(col3, op1, op2, true))
+				if (!extractOperands(col3, op1, op2))
 					throw "parse error";
 				encoding = 0;
 				encoding = op1 << 6;
