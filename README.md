@@ -1,5 +1,8 @@
 # Simple C++ based assembler for multicycle processor that is used in ECE352 course in the University of Toronto
 
+Credit: R.Willenberg and F.Martin del Campo for the initial version of this assembler. 
+
+Change P.Poolad updated with new instruction codes for nop/stop and vector instrucitons, debuged db instruction
 1. You can compile and use the assembler for the multicycle processor using G++:
 	`> make`
 2. You can now assemble files by calling
