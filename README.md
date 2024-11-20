@@ -1,13 +1,13 @@
 # Simple C++ based assembler for multicycle processor that is used in ECE352 course in the University of Toronto
 
 1. You can compile and use the assembler for the multicycle processor using G++:
-		> make
+	`> make`
 2. You can now assemble files by calling
-		> ./asm YOURCODE.s
+	`> ./asm YOURCODE.s`
 3. The assembler will produce a file 'data.mif' to use for inclusion in your Quartus bitstream, and a file 'data.mif.mem' that is used for ModelSim simulation
 4. You can either copy the two files into your Quartus project folder, or copy the asm.exe file into your project folder and build the files right there, whatever you preference is
 5. If you haven't changed anything about your processor hardware, but want to test a new assembly program on the board  you can update and download your system with a new *.mif file by clicking on the 'UPDATE_MIF.bat' batch file in the Quartus project folder. It is much faster than re-starting the whole Quartus compile. Alternatively, you can call it directly after assembling from the NIOS II console with
-	> cmd /C UPDATE_MIF.bat
+	`> cmd /C UPDATE_MIF.bat`
 	
 REMEMBER: If you try out hardware changes, SIMULATE them first before trying them on the board. Much easier and faster to debug.
 
