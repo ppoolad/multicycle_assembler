@@ -23,7 +23,7 @@ REMEMBER: If you try out hardware changes, SIMULATE them first before trying the
 - TMP = temporary variable
 
 ## Register Transfer Notation:
-
+`
 LOAD R1 (R2):
      TMP = MEM[[R2]]
      R1 = TMP
@@ -80,13 +80,13 @@ BNZ IMM4
 BPZ IMM4
      IF (N == 0) PC = [PC] + EXT(IMM4)
      [PC] = [PC] + 1
+`
 
-
-Instruction Encodings:
+## Instruction Encodings:
 Legend:
 Rx = 2 bit encoding of register
 I  = immediate value
-
+`
 Bit [MSB]76543210[LSB]
 
 LOAD:    R1R20000
@@ -103,6 +103,6 @@ BPZ:	 IIII1101
 VADD:  V1V21110
 VLOAD  V1R21010
 VSTORE V1R21110
-
+`
 STOP:	 00000001
 NOP:	 10000001
