@@ -24,62 +24,62 @@ REMEMBER: If you try out hardware changes, SIMULATE them first before trying the
 
 ## Register Transfer Notation:
 `
-LOAD R1 (R2):
-     TMP = MEM[[R2]]
-     R1 = TMP
-     [PC] = [PC] + 1
-
-STORE R1 (R2):
-     MEM[[R2]] = [R1]
-     [PC] = [PC] + 1
-
-ADD R1 R2
-     TMP = [R1] + [R2]
-     R1 = TMP
-     IF (TMP == 0) Z = 1; ELSE Z = 0;
-     IF (TMP < 0) N = 1; ELSE N = 0;
-     [PC] = [PC] + 1
-
-SUB R1 R2
-     TMP = [R1] - [R2]
-     R1 = TMP
-     IF (TMP == 0) Z = 1; ELSE Z = 0;
-     IF (TMP < 0) N = 1; ELSE N = 0;
-     [PC] = [PC] + 1
-
-NAND R1 R2
-     TMP = [R1] bitwise-NAND [R2]
-     R1 = TMP
-     IF (TMP == 0) Z = 1; ELSE Z = 0;
-     IF (TMP < 0) N = 1; ELSE N = 0;
-     [PC] = [PC] + 1
-
-ORI IMM5
-    TMP = [K1] bitwise-OR IMM5
-    [K1] = TMP
-    IF (TMP == 0) Z = 1; ELSE Z = 0;
-    IF (TMP < 0) N = 1; ELSE N = 0;
-    [PC] = [PC] + 1
-
-SHIFT R1 IMM3
-    IF (IMM3 > 0) TMP = [R1] << IMM3
-    ELSE TMP = [R1] >> (-IMM3)
-    R1 = TMP
-    IF (TMP == 0) Z = 1; ELSE Z = 0;
-    IF (TMP < 0) N = 1; ELSE N = 0;
-    [PC] = [PC] + 1
-
-BZ IMM4
-     IF (Z == 1) PC = [PC] + EXT(IMM4)
-     [PC] = [PC] + 1
-
-BNZ IMM4
-     IF (Z == 0) PC = [PC] + EXT(IMM4)
-     [PC] = [PC] + 1
-
-BPZ IMM4
-     IF (N == 0) PC = [PC] + EXT(IMM4)
-     [PC] = [PC] + 1
+	LOAD R1 (R2):
+	     TMP = MEM[[R2]]
+	     R1 = TMP
+	     [PC] = [PC] + 1
+	
+	STORE R1 (R2):
+	     MEM[[R2]] = [R1]
+	     [PC] = [PC] + 1
+	
+	ADD R1 R2
+	     TMP = [R1] + [R2]
+	     R1 = TMP
+	     IF (TMP == 0) Z = 1; ELSE Z = 0;
+	     IF (TMP < 0) N = 1; ELSE N = 0;
+	     [PC] = [PC] + 1
+	
+	SUB R1 R2
+	     TMP = [R1] - [R2]
+	     R1 = TMP
+	     IF (TMP == 0) Z = 1; ELSE Z = 0;
+	     IF (TMP < 0) N = 1; ELSE N = 0;
+	     [PC] = [PC] + 1
+	
+	NAND R1 R2
+	     TMP = [R1] bitwise-NAND [R2]
+	     R1 = TMP
+	     IF (TMP == 0) Z = 1; ELSE Z = 0;
+	     IF (TMP < 0) N = 1; ELSE N = 0;
+	     [PC] = [PC] + 1
+	
+	ORI IMM5
+	    TMP = [K1] bitwise-OR IMM5
+	    [K1] = TMP
+	    IF (TMP == 0) Z = 1; ELSE Z = 0;
+	    IF (TMP < 0) N = 1; ELSE N = 0;
+	    [PC] = [PC] + 1
+	
+	SHIFT R1 IMM3
+	    IF (IMM3 > 0) TMP = [R1] << IMM3
+	    ELSE TMP = [R1] >> (-IMM3)
+	    R1 = TMP
+	    IF (TMP == 0) Z = 1; ELSE Z = 0;
+	    IF (TMP < 0) N = 1; ELSE N = 0;
+	    [PC] = [PC] + 1
+	
+	BZ IMM4
+	     IF (Z == 1) PC = [PC] + EXT(IMM4)
+	     [PC] = [PC] + 1
+	
+	BNZ IMM4
+	     IF (Z == 0) PC = [PC] + EXT(IMM4)
+	     [PC] = [PC] + 1
+	
+	BPZ IMM4
+	     IF (N == 0) PC = [PC] + EXT(IMM4)
+	     [PC] = [PC] + 1
 `
 
 ## Instruction Encodings:
@@ -87,22 +87,23 @@ Legend:
 Rx = 2 bit encoding of register
 I  = immediate value
 `
-Bit [MSB]76543210[LSB]
-
-LOAD:    R1R20000
-STORE:	 R1R20010
-ADD:	 R1R20100
-SUB:	 R1R20110
-NAND:	 R1R21000
-ORI:	 IIIII111
-SHIFT:	 R1III011
-BZ:	 IIII0101
-BNZ:	 IIII1001
-BPZ:	 IIII1101
-
-VADD:  V1V21110
-VLOAD  V1R21010
-VSTORE V1R21110
+	Bit [MSB]76543210[LSB]
+	
+	LOAD:    R1R20000
+	STORE:	 R1R20010
+	ADD:	 R1R20100
+	SUB:	 R1R20110
+	NAND:	 R1R21000
+	ORI:	 IIIII111
+	SHIFT:	 R1III011
+	BZ:	 IIII0101
+	BNZ:	 IIII1001
+	BPZ:	 IIII1101
+	
+	VADD:  V1V21110
+	VLOAD  V1R21010
+	VSTORE V1R21110
+	
+	STOP:	 00000001
+	NOP:	 10000001
 `
-STOP:	 00000001
-NOP:	 10000001
